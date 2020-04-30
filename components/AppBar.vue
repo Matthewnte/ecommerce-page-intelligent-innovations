@@ -3,7 +3,8 @@
     <v-navigation-drawer
       v-model="drawer"
       :mini-variant="miniVariant"
-      :clipped="clipped"
+      :clipped="true"
+      disable-resize-watcher
       fixed
       app
     >
@@ -25,17 +26,36 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-app-bar color="green" dark :clipped-left="clipped" flat fixed app>
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
+    <v-app-bar
+      :color="setColor"
+      dark
+      flat
+      fixed
+      :app="$route.path !== '/'"
+      :absolute="$route.path === '/'"
+    >
+      <v-app-bar-nav-icon
+        class="hidden-sm-and-up"
+        @click.stop="drawer = !drawer"
+      />
       <v-toolbar-title>
-        <span class="font-weight-bold">9</span>pay
+        <nuxt-link to="/">
+          <v-img
+            src="https://9pay.com.ng/v2/img/9-pay-logo@3x.png"
+            height="40"
+            max-width="60"
+            alt="Site logo"
+          ></v-img>
+        </nuxt-link>
       </v-toolbar-title>
       <v-spacer />
       <v-toolbar-items>
-        <v-btn depressed text class="text-none">
+        <v-btn text nuxt href="#" class="subtitle-1 text-none mr-1">
+          Need Help?
+        </v-btn>
+        <v-btn depressed text nuxt href="#" class="subtitle-1 text-none">
           Login
         </v-btn>
-        <v-btn text class="text-none">Need Help?</v-btn>
       </v-toolbar-items>
     </v-app-bar>
   </div>
@@ -45,22 +65,41 @@
 export default {
   data() {
     return {
-      clipped: false,
       drawer: false,
       items: [
         {
           icon: 'mdi-apps',
-          title: 'Welcome',
+          title: 'Home',
           to: '/'
         },
         {
           icon: 'mdi-chart-bubble',
-          title: 'Inspire',
-          to: '/inspire'
+          title: 'Product merchant',
+          to: '/product-merchants'
+        },
+        {
+          icon: 'mdi-chart-bubble',
+          title: 'Service merchant',
+          to: '/service-merchants'
         }
       ],
       miniVariant: false
     }
+  },
+  computed: {
+    setColor() {
+      if (this.$route.path !== '/') {
+        return 'green'
+      } else {
+        return 'transparent'
+      }
+    }
   }
 }
 </script>
+
+<style scoped>
+[href='#']:hover {
+  border-bottom: 3px solid green;
+}
+</style>
