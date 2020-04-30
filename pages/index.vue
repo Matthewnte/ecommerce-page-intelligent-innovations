@@ -1,21 +1,20 @@
 <template>
   <div>
-    <Carousel />
-    <v-container>
-      <h2 class="headline font-weight-bold">Merchants</h2>
-      <Merchants :merchants="merchants" />
-    </v-container>
+    <Carousel v-if="$route.path === '/'" />
+    <Categories />
+    <Merchants :merchants="merchants" />
   </div>
 </template>
-
 <script>
 import data from '../data'
 import Carousel from '@/components/Carousel'
+import Categories from '@/components/Category'
 import Merchants from '@/components/Merchants'
 
 export default {
   components: {
     Carousel,
+    Categories,
     Merchants
   },
   data: () => ({

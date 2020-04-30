@@ -1,13 +1,17 @@
 <template>
   <v-carousel
-    height="450"
+    height="400"
     hide-delimiters
     hide-delimiter-background
     show-arrows-on-hover
   >
     <v-carousel-item v-for="(image, i) in images" :key="i" :src="image.src">
-      <v-container fluid class="fill-height cover-sm">
-        <v-container>
+      <v-container
+        fluid
+        class="fill-height"
+        style="background: rgba(0, 50, 0, 0.2);"
+      >
+        <v-container class="fill-height d-flex justify-end align-end">
           <v-btn color="green" x-large depressed>
             Shop Now<v-icon large right>mdi-chevron-right</v-icon>
           </v-btn>
@@ -34,10 +38,3 @@ export default {
   })
 }
 </script>
-
-<style scoped>
-.cover-sm {
-  background: rgba(0, 50, 0, 0.2);
-  height: 70vh;
-}
-</style>
