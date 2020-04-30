@@ -7,7 +7,7 @@
       </p>
     </div>
     <v-row>
-      <v-col cols="12" class="mb-6" offset-sm-3>
+      <v-col cols="12" class="mb-6" offset-sm="3">
         <v-btn
           v-for="(category, i) in categories"
           id="category-btn"
